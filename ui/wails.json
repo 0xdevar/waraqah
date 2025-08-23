@@ -1,0 +1,14 @@
+{
+  "$schema": "https://wails.io/schemas/config.v2.json",
+  "name": "waraqah",
+  "outputfilename": "0xwaraqah",
+  "frontend:install": "npm install",
+  "frontend:build": "npm run build",
+  "frontend:dev:watcher": "npm run dev",
+  "frontend:dir": "ui/frontend",
+  "frontend:dev:serverUrl": "auto",
+  "author": {
+    "name": "0x",
+    "email": "0xdevar"
+  }
+}

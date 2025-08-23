@@ -1,7 +1,7 @@
 package main
 
-import "github.com/0xdevar/waraqah/ui"
+import "github.com/0xdevar/waraqah/ui/bootstrap"
 
 func main() {
-	ui.Start()
+	bootstrap.Run()
 }

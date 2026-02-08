@@ -108,8 +108,11 @@ func toImage(imagePath string, m metaImage) w.Wallpaper {
 
 }
 
-func NewGitRepo(owner, repo, branch, dest string) *Git {
-	return &Git{owner, repo, branch, dest}
+func NewGitRepo(owner, repo, branch, dest string) (*Git, error) {
+	if _, err := exec.LookPath("git"); err != nil {
+		return nil, err
+	}
+	return &Git{owner, repo, branch, dest}, nil
 }
 
 func (s *Git) isGitRepo(dir string) bool {

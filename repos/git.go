@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"path/filepath"
 	"strings"
 
 	w "github.com/0xdevar/waraqah"
@@ -111,8 +112,13 @@ func NewGitRepo(owner, repo, branch, dest string) *Git {
 	return &Git{owner, repo, branch, dest}
 }
 
+func (s *Git) isGitRepo(dir string) bool {
+	_, err := os.Stat(filepath.Join(dir, ".git"))
+	return err == nil
+}
+
 func (s *Git) GetWallpapers() (out []w.WallpaperCollection, err error) {
-	{
+	if !s.isGitRepo(s.dest) {
 		gitCmd := fmt.Sprintf("clone --depth=1 --filter=blob:none --sparse --no-checkout "+
 			"https://github.com/%s/%s.git --branch %s %s",
 			s.owner, s.repo, s.branch, s.dest)
